@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block home_page %}
+
+{% if user.is_authenticated %}
+
+Welcome {{user.username}}
+
+{% else %}
+
+
+<p></p>
+
+{% endif %}
+
+{% endblock home_page%}

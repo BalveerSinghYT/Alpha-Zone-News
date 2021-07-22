@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block login_page %}
+{% load crispy_forms_tags %}         
+
+<div class="container py-5 px-5 mx-auto " style="width: 50%;">
+
+<h2>Login</h2>
+
+<p>Please login with your valid credentials</p>
+<form action="" method="post" >
+
+
+    {% csrf_token %}      
+
+    {{form.as_p}}
+
+    <input type="submit" value="Login">
+
+
+</form>
+
+<p><a href="{% url 'password_reset' %}">Reset Password</a> </p>
+<p><a href="{% url 'register'%}">Don't have an account?</a></p>
+
+</div>
+{% endblock login_page %}
