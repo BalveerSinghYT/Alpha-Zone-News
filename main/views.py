@@ -3,7 +3,11 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm, NewUserForm
 from django.http import HttpResponse
 from django.contrib import messages
+import requests
+import QuickNews.settings
 # Create your views here.
+
+APIKEY = 'f43c5eef8c544690bbcd43d4a58ebfb3'
 
 def login_user(request):
     if request.method == 'POST':
@@ -37,3 +41,17 @@ def register_request(request):
 		messages.error(request, "Unsuccessful registration. Invalid information.")
 	form = NewUserForm()
 	return render (request=request, template_name="register.html", context={"register_form":form})
+
+def news(request):
+    url = f'https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey={APIKEY}'
+    response = requests.get(url)
+    data = response.json()
+    # print(data)
+    articles = data['articles']
+    # print(articles)
+
+    context = {
+        'articles' : articles
+    }
+
+    return render(request, 'news.html', context)
