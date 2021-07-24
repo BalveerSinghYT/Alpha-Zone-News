@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import os
+import os, whitenoise
+import django_heroku
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-d(lq#p3qlg^&s=81usa0a-gi034o87l$e-7gm4jgk)m8rerdb+'
+# SECRET_KEY = 'django-insecure-d(lq#p3qlg^&s=81usa0a-gi034o87l$e-7gm4jgk)m8rerdb+'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # NEWS API KEY
 # APIKEY = 'f43c5eef8c544690bbcd43d4a58ebfb3'
@@ -29,7 +32,7 @@ SECRET_KEY = 'django-insecure-d(lq#p3qlg^&s=81usa0a-gi034o87l$e-7gm4jgk)m8rerdb+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -46,6 +49,8 @@ INSTALLED_APPS = [
     'froala_editor',
 
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -157,3 +162,5 @@ else:
     EMAIL_BACKEND = (
         "django.core.mail.backends.console.EmailBackend"
     )
+
+django_heroku.settings(locals())
