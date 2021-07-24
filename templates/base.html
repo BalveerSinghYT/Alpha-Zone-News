@@ -4,6 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Quick News</title>
+    <!-- Price Slider Stylesheets -->
+    <link rel="stylesheet" href="/media/css/nouislider.css">
+    <!-- Google fonts - Playfair Display-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,400i,700">
+    <!-- swiper-->
+    <link rel="stylesheet" href="/media/css/swiper.min.css">
+    <!-- Magnigic Popup-->
+    <link rel="stylesheet" href="/media/css/magnific-popup.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/media/css/default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/media/css/custom.css">
+    <script src="/media/js/main.js"> </script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -41,35 +56,57 @@
                 </form> {% endcomment %}
 
                 {% if user.is_authenticated %}
-
-                Welcome {{user.username}}
+                <a class="btn btn-primary me-2 " href="{% url 'see_blog' %}">My Blogs</a>
+                <a class="btn btn-primary me-2 " href="{% url 'add_blog' %}">Add Blog</a>
                 <a class="btn btn-primary me-2 " href="{% url 'logout' %}">Logout</a>
+                
 
                 {% else %}
-
-
                 <a class="btn btn-primary me-2 " href="{% url 'login' %}">Login</a>
-
-
-                <p></p>
-
                 {% endif %}
             </div>
         </div>
     </nav>
 
-    {% block home_page %}    {% endblock home_page%}
+        {% block start %}
 
-    {% block body %}  {% endblock %}
+
+    {% endblock %}
+
+
+    {% block home_page %} {% endblock home_page%}
+
+    {% block body %} {% endblock %}
 
     {% block registeration_page %} {% endblock registeration_page%}
 
-    {% block login_page %}    {% endblock login_page%} 
+    {% block login_page %} {% endblock login_page%}
 
     {% block news_page%} {% endblock news_page%}
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    {% block blog_page %} {% endblock blog_page%}
+
+    {% block see_blog %} {% endblock see_blog%}
+
+    <!--Footer-->
+    <footer class="position-relative z-index-10 d-print-none">
+   
+      <div class="py-4 font-weight-light bg-gray-800 text-gray-300">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-left">
+              <p class="text-sm mb-md-0">&copy; 2021, Quick News.  All rights reserved.</p>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
 </body>
 

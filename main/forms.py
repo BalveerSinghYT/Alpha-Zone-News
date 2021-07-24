@@ -3,6 +3,7 @@ from django.forms import widgets
 from django.forms.widgets import PasswordInput
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import *
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=100)
@@ -21,3 +22,8 @@ class NewUserForm(UserCreationForm):
 		if commit:
 			user.save()
 		return user
+
+class BlogForm(forms.ModelForm):
+    class Meta:
+        model = BlogModel
+        fields = ['content']
