@@ -3,5 +3,5 @@ Python Django based news &amp; blog website.
 
 ## Admin Login
  
- Username: admin
+ Username: admin <br>
  Password: Admin@123
