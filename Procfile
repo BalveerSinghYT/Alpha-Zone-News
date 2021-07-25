@@ -1,1 +1,1 @@
-web: waitress-serve --port=$PORT QuickNews.wsgi:application
+web: gunicorn QuickNews.wsgi
