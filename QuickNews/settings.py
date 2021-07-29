@@ -30,7 +30,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # APIKEY = 'f43c5eef8c544690bbcd43d4a58ebfb3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
