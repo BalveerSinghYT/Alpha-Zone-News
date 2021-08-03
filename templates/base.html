@@ -44,7 +44,8 @@
                         <a class="nav-link " aria-current="page" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://drive.google.com/file/d/1Wa9KO7cWSO2C2_nePvrZLcjgCYv9hOvw/view?usp=sharing">About</a>
+                        <a class="nav-link"
+                            href="https://drive.google.com/file/d/1Wa9KO7cWSO2C2_nePvrZLcjgCYv9hOvw/view?usp=sharing">About</a>
                     </li>
                     {% comment %} <li class="nav-item">
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -59,7 +60,7 @@
                 <a class="btn btn-primary me-2 " href="{% url 'see_blog' %}">My Blogs</a>
                 <a class="btn btn-primary me-2 " href="{% url 'add_blog' %}">Add Blog</a>
                 <a class="btn btn-primary me-2 " href="{% url 'logout' %}">Logout</a>
-                
+
 
                 {% else %}
                 <a class="btn btn-primary me-2 " href="{% url 'login' %}">Login</a>
@@ -68,7 +69,8 @@
         </div>
     </nav>
 
-        {% block start %}
+    {% block body %} {% endblock %}
+    {% block start %}
 
 
     {% endblock %}
@@ -76,7 +78,7 @@
 
     {% block home_page %} {% endblock home_page%}
 
-    {% block body %} {% endblock %}
+
 
     {% block registeration_page %} {% endblock registeration_page%}
 
