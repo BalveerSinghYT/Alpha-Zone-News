@@ -4,17 +4,47 @@ from .forms import LoginForm, NewUserForm
 from django.http import HttpResponse
 from django.contrib import messages
 import requests
-import QuickNews.settings
 from .forms import *
+import time
+import os
 # Create your views here.
 
-APIKEY = 'f43c5eef8c544690bbcd43d4a58ebfb3'
+APIKEY = os.environ['APIKEY']
+
+date = time.strftime("%A, %d %B, %Y")
+last_week = time.strftime("%Y-%m-%d", time.localtime(time.time() - 604800))
+top_headlines = requests.get('https://newsapi.org/v2/top-headlines?country=us&category=entertainment&apiKey='+APIKEY)
+technology = requests.get('https://newsapi.org/v2/everything?domains=techcrunch.com,thenextweb.com&apiKey='+APIKEY)
+weekly_top = requests.get('https://newsapi.org/v2/top-headlines?country=us&category=entertainment&apiKey=' + APIKEY +'&from='+last_week+'&to='+time.strftime("%Y-%m-%d", time.localtime(time.time())))
+business_articles = requests.get('https://newsapi.org/v2/top-headlines?country=us&category=entertainment&apiKey='+APIKEY)
 
 def home(request):
-    context = {'blogs' : BlogModel.objects.all()}
-    return render(request , 'home.html' , context)
+    # date format Tuesday, 18th June, 2019
 
+    context = {
+        'blogs' : BlogModel.objects.all(),
+        'date' : date,
+        'top_headlines' : top_headlines.json()['articles'][:5],
+        'technology' : technology.json()['articles'][:1],
+        'weekly_top' : weekly_top.json()['articles'][:5],
+        'business_articles' : business_articles.json()['articles'][:5],
+    }
+    return render(request , 'index.html' , context)
 
+def about(request):
+    context = {
+        'top_headlines' : top_headlines.json()['articles'][:5],
+    }
+    return render(request , 'about.html', context)
+
+def blogs(request):
+    context = {
+        'blogs' : BlogModel.objects.all()[:5],
+    }
+    return render(request , 'blog.html' , context)
+
+def contact(request): 
+    return render(request , 'contact.html')
 
 def login_user(request):
     if request.method == 'POST':
@@ -116,8 +146,6 @@ def blog_detail(request , slug):
 def blog_update(request , slug):
     context = {}
     try:
-        
-        
         blog_obj = BlogModel.objects.get(slug = slug)
        
         
