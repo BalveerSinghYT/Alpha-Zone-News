@@ -25,10 +25,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-d(lq#p3qlg^&s=81usa0a-gi034o87l$e-7gm4jgk)m8rerdb+'
 SECRET_KEY = os.environ['SECRET_KEY']
-
-# NEWS API KEY
-# APIKEY = 'f43c5eef8c544690bbcd43d4a58ebfb3'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -71,7 +67,7 @@ ROOT_URLCONF = 'QuickNews.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -141,8 +137,8 @@ STATICFILES_DIR = {
     os.path.join(BASE_DIR , "public/static")
 }
 
-MEDIA_ROOT = os.path.join(BASE_DIR , 'public/static')
-MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR , 'public/static')
+# MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
